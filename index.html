@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odin Etch a Sketch</title>
+    <script src="mainScript.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class = "Header">
+        <p>Welcome to draw! A journey back to simpler times...</p>
+    </div>
+
+    <div class = "main">
+        <div class = "sidebar">
+            <p>tools here.</p>
+            <div class = "tools">
+                <button>pencil</button>
+                <button>sharpie</button>
+                <button>eraser</button>
+            </div>
+            
+            <div class = "colors">
+                <button>blue</button>
+                <button>green</button>
+                <button>red</button>
+                <button>yellow</button>
+            </div>
+
+            <div class = "slider-container">
+                <p>Select size to create new grid</p>
+                <input type="range" min="16" max="64" value="16" step = "8" id = "slider1">
+                <p id = "slider-value">16</p>
+                <button id = "create-grid">Create new grid</button>
+            </div>
+
+        </div>
+        <div class = "grid-container">
+        </div>
+    </div>
+
+    <div class = "footer">
+        <p>Built with love in 2022</p>
+    </div>
+    
+</body>
+</html>
