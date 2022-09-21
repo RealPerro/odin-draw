@@ -2,13 +2,15 @@
 let size = 16;
 let pixelheight;
 let pixelwidth;
-const colorList = ["blue","indigo",  "green", "red", "yellow", "gray",
-                 "pink", "lightblue", "palegreen", "black", "orange", "lavender", "white"]
+let pixelList;
+
+const colorList = ["red", "pink", "orange", "yellow", "palegreen",
+     "green", "blue", "lightblue", "lavender", "indigo", "white", "gray", "black"]
 
 let currentColor;
 let currentIntensity;
 
-//asign elements to variables
+//asign initial elements to variables
 const slider1 = document.querySelector("#slider1");
 const create1 = document.querySelector("#create-grid");
 const gridContainer = document.querySelector(".grid-container");
@@ -23,43 +25,41 @@ const eraserButton = document.querySelector("#eraserButton");
 slider1.addEventListener("change", updateSlider);
 create1.addEventListener("click", buildGrid);
 
-//create color buttons and assign to variable
+//create color buttons and assign to variable and add event listeners for color buttons
 buildColors()
-const colorButtonList = document.querySelectorAll(".color-button");
+const colorButtonList = document.querySelectorAll("#color-container > .color-button");
+colorButtonList.forEach(function(i) {
+    i.addEventListener('click', activateColor)});
 
 //add event listeners for tools buttons
 pencilButton.addEventListener("click", activatePencil);
 sharpieButton.addEventListener("click", activateSharpie);
 eraserButton.addEventListener("click", activateEraser);
 
-//add event listeners for color buttons
-colorButtonList.forEach(addClickListener);
-
-//build initial grid and assign pixels to variable
+//build initial grid 
 buildGrid()
-const pixelList = document.querySelectorAll(".drawGrid");
 
 //add event listener for grid divs for painting
-pixelList.forEach(addPaintListener);
+pixelList.forEach(function(i) {
+    i.addEventListener('mousedown', paintPixel)});
 
 //functions
-function addPaintListener() {
-    this.addEventListener("click", paintPixel);
-}
-
-function addClickListener() {
-    this.addEventListener("click", activateColor);
-}
 
 function paintPixel(e) {
-    //console.log(e.path[0].backgroundColor);
-    e.path[0].backgroundColor = "black";
-    e.path[0].opacity += currentIntensity;
+    console.log("paintpixel");
+
+    if (this.style.backgroundColor == currentColor) {
+        this.style.opacity = currentIntensity + parseFloat(this.style.opacity);
+    }
+    else {
+        this.style.backgroundColor = currentColor;
+        this.style.opacity = currentIntensity;
+    } 
 }
 
 function buildGrid() {
-    console.log("build");
-    console.log(slider1.value);
+    //console.log("build");
+    //console.log(slider1.value);
     pixelheight = (document.querySelector(".grid-container").clientHeight / size);
     pixelwidth = (document.querySelector(".grid-container").clientWidth / size);
     let n = slider1.value;
@@ -70,8 +70,11 @@ function buildGrid() {
         newDiv.id = `grid_${i}`;
         newDiv.style.height = pixelheight+"px";
         newDiv.style.width = pixelwidth+"px";
+        newDiv.style.opacity = 1;
+        newDiv.style.backgroundColor = "white";
         gridContainer.appendChild(newDiv)
     }
+    pixelList = document.querySelectorAll(".drawGrid");
 }
 
 function updateSlider(e) {
@@ -81,7 +84,7 @@ function updateSlider(e) {
 
 function buildColors() {
     for (c of colorList) {
-        console.log(c)
+        //console.log(c)
         let newButton = document.createElement('button');
         newButton.classList.add("color-button");
         newButton.style.backgroundColor = ""+c;
@@ -117,9 +120,8 @@ function activateEraser() {
 }
 
 function activateColor(e) {
-    console.log(e);
+    console.log(`${e.path[0].id} color activated`);
     colorButtonList.forEach((element) => {element.classList.remove("active")});
     e.path[0].classList.add("active");
     currentColor = `${e.path[0].id}`;
-    console.log(currentColor);
 }
