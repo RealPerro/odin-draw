@@ -3,6 +3,11 @@ let size = 16;
 let pixelheight;
 let pixelwidth;
 let pixelList;
+let isMouseDown;
+
+forty2 = document.querySelector("body");
+forty2.addEventListener("mousedown", function() {isMouseDown = true;})
+forty2.addEventListener("mouseup", function() {isMouseDown = false;})
 
 const colorList = ["red", "pink", "orange", "yellow", "palegreen",
      "green", "blue", "lightblue", "lavender", "indigo", "white", "gray", "black"]
@@ -39,23 +44,30 @@ eraserButton.addEventListener("click", activateEraser);
 //build initial grid 
 buildGrid()
 
-//add event listener for grid divs for painting
-pixelList.forEach(function(i) {
-    i.addEventListener('mousedown', paintPixel)});
-
 //functions
-
 function paintPixel(e) {
-    console.log("paintpixel");
-
-    if (this.style.backgroundColor == currentColor) {
-        this.style.opacity = currentIntensity + parseFloat(this.style.opacity);
-    }
-    else {
-        this.style.backgroundColor = currentColor;
-        this.style.opacity = currentIntensity;
-    } 
+    if ( isMouseDown == true) {
+        console.log("paintpixel mousedown");
+        if (this.style.backgroundColor == currentColor) {
+            this.style.opacity = currentIntensity + parseFloat(this.style.opacity);
+        }
+        else {
+            this.style.backgroundColor = currentColor;
+            this.style.opacity = currentIntensity;
+        } 
+    } else {console.log("paintpixel mousedoup");}
 }
+
+function paintPixel2(e) {
+    console.log("paintpixel2");
+    if (this.style.backgroundColor == currentColor) {
+            this.style.opacity = currentIntensity + parseFloat(this.style.opacity);
+        }
+    else {
+            this.style.backgroundColor = currentColor;
+            this.style.opacity = currentIntensity;
+        } 
+    } 
 
 function buildGrid() {
     //console.log("build");
@@ -75,6 +87,11 @@ function buildGrid() {
         gridContainer.appendChild(newDiv)
     }
     pixelList = document.querySelectorAll(".drawGrid");
+    //add event listener for grid divs for painting
+    pixelList.forEach(function(i) {
+        i.addEventListener('mouseover', paintPixel);
+        i.addEventListener('mousedown', paintPixel2);
+    });
 }
 
 function updateSlider(e) {
@@ -96,7 +113,7 @@ function buildColors() {
 
 function activatePencil() {
     console.log("pencil activated");
-    currentIntensity = 0.1;
+    currentIntensity = 0.2;
     pencilButton.classList.add("active");
     sharpieButton.classList.remove("active");
     eraserButton.classList.remove("active");
