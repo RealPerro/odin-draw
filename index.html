@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class = "Header">
-        <p>Welcome to draw! A journey back to simpler times...</p>
+        <p id = "greet">Welcome to draw! A journey back to simpler times...</p>
     </div>
 
     <div class = "main">
@@ -22,16 +22,13 @@
                 <button>eraser</button>
             </div>
             
-            <div class = "colors">
-                <button>blue</button>
-                <button>green</button>
-                <button>red</button>
-                <button>yellow</button>
+            <div class = "colors" id = "color-container">
+                
             </div>
 
             <div class = "slider-container">
                 <p>Select size to create new grid</p>
-                <input type="range" min="16" max="64" value="16" step = "8" id = "slider1">
+                <input type="range" min="16" max="64" value="16" step = "16" id = "slider1">
                 <p id = "slider-value">16</p>
                 <button id = "create-grid">Create new grid</button>
             </div>
