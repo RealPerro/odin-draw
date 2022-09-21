@@ -12,7 +12,7 @@ forty2.addEventListener("mouseup", function() {isMouseDown = false;})
 const colorList = ["red", "pink", "orange", "yellow", "palegreen",
      "green", "blue", "lightblue", "lavender", "indigo", "white", "gray", "black"]
 
-let currentColor;
+let currentColor = "black";
 let currentIntensity;
 
 //asign initial elements to variables
@@ -43,6 +43,9 @@ eraserButton.addEventListener("click", activateEraser);
 
 //build initial grid 
 buildGrid()
+
+//initialize sharpie
+activateSharpie()
 
 //functions
 function paintPixel(e) {
@@ -109,6 +112,7 @@ function buildColors() {
         newButton.textContent = ""+c;
         colorContainer.appendChild(newButton)
     }
+    document.querySelector("#black").classList.add("active");
 }
 
 function activatePencil() {
