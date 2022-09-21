@@ -7,7 +7,7 @@
     transition: 0.3s;
 }
 
-.#greet {
+#greet {
     margin: 10px;
 }
 
@@ -60,13 +60,14 @@ button {
     padding:10px;
     min-width: 120px;
     opacity: 0.8;
-    border:dotted 1px grey;
+    border:dotted 3px grey;
     font-size: 16px;
 }
 
 button:hover {
     opacity: 1;
     border:solid 3px black;
+    box-shadow: 3px 3px lightgrey;
 }
 
 .slider-container {
@@ -93,4 +94,11 @@ button:hover {
     flex-wrap: wrap;
     border-radius: 10px;
     
+}
+
+button.active {
+    border-color: yellow;
+    box-shadow: 0px 0px 10px 10px lightgoldenrodyellow;
+    font-weight: bold;
+    background-color: blanchedalmond;
 }
