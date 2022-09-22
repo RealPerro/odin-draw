@@ -21,7 +21,8 @@
 
 .sidebar {
     border: solid 1px red;
-    min-width: 400px;
+    min-width: 350px;
+    max-width: 400px;
     min-height:600px;
     display:flex;
     flex-direction: column;
@@ -29,12 +30,13 @@
     align-items: center;
     align-content: center;
     padding: 20px;
+    flex-grow: 0;;
 }
 
 .grid-container {
     margin: 0;
-    border: solid 1px lightblue;
-    min-width: 600px;
+    border: dotted 1px rgb(230,230,230);
+    min-width: 700px;
     min-height:600px;
     width: 1201px;
     height: 1201px;
@@ -48,7 +50,7 @@
 }
 
 .drawGrid {
-    border: 1px solid grey;
+    border: 1px solid rgb(230,230,230);
 }
 
 .drawGrid:hover {
