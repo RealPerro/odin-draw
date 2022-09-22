@@ -23,7 +23,6 @@ const colorContainer = document.querySelector("#color-container");
 
 const pencilButton = document.querySelector("#pencilButton");
 const sharpieButton = document.querySelector("#sharpieButton");
-const eraserButton = document.querySelector("#eraserButton");
 
 
 //add event listeners for grid build
@@ -39,7 +38,6 @@ colorButtonList.forEach(function(i) {
 //add event listeners for tools buttons
 pencilButton.addEventListener("click", activatePencil);
 sharpieButton.addEventListener("click", activateSharpie);
-eraserButton.addEventListener("click", activateEraser);
 
 //build initial grid 
 buildGrid()
@@ -131,14 +129,6 @@ function activateSharpie() {
     eraserButton.classList.remove("active");
 }
 
-function activateEraser() {
-    console.log("eraser activated");
-    currentIntensity = -1;
-    pencilButton.classList.remove("active");
-    sharpieButton.classList.remove("active");
-    eraserButton.classList.add("active");
-
-}
 
 function activateColor(e) {
     console.log(`${e.path[0].id} color activated`);
