@@ -118,7 +118,6 @@ function activatePencil() {
     currentIntensity = 0.2;
     pencilButton.classList.add("active");
     sharpieButton.classList.remove("active");
-    eraserButton.classList.remove("active");
 }
 
 function activateSharpie() {
@@ -126,13 +125,12 @@ function activateSharpie() {
     currentIntensity = 1;
     pencilButton.classList.remove("active");
     sharpieButton.classList.add("active");
-    eraserButton.classList.remove("active");
 }
 
 
 function activateColor(e) {
-    console.log(`${e.path[0].id} color activated`);
+    console.log(`${this.id} color activated`);
     colorButtonList.forEach((element) => {element.classList.remove("active")});
-    e.path[0].classList.add("active");
-    currentColor = `${e.path[0].id}`;
+    this.classList.add("active");
+    currentColor = `${this.id}`;
 }
